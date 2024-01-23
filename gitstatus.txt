@@ -1,0 +1,37 @@
+Какие состояния показывает git status
+
+В итоге git status показывает только следующие состояния файлов:
+staged (Changes to be committed в выводе git status);
+modified (Changes not staged for commit);
+untracked (Untracked files).
+
+Если ничего не менят то гит статус будет таким:
+git status
+On branch master
+nothing to commit, working tree clean
+
+Если создать файл то гит статутс станет:
+git status
+On branch master
+Untracked files: # найдены неотслеживаемые файлы
+  (use "git add <file>..." to include in what will be committed)
+        fileA.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+Файл fileA.txt отображается в секции неотслеживаемых файлов — Untracked files. Это значит, что он не был добавлен в репозиторий через git add.
+
+После выполнения команды git add гит статус станет:
+git status
+On branch master
+Changes to be committed: # новая секция
+  (use "git restore --staged <file>..." to unstage)
+        new file:   fileA.txt
+
+Теперь fileA.txt находится в секции Changes to be committed (англ. «изменения, которые попадут в коммит»). Если сейчас выполнить коммит, то в репозитории будет зафиксирована текущая версия этого файла. Закоммитьте его.
+
+$ git commit -m 'Добавить файл fileA.txt'
+# тут будет вывод комманды commit, он нас не интересует
+$ git status
+On branch master
+nothing to commit, working tree clean
